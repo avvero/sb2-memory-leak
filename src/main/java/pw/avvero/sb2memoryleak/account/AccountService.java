@@ -27,7 +27,7 @@ public class AccountService {
     }
 
     @Transactional
-    @Retryable(value = ObjectOptimisticLockingFailureException.class, maxAttempts = 5)
+    @Retryable(value = ObjectOptimisticLockingFailureException.class, maxAttempts = 10, backoff = @Backoff(delay = 200))
     public void deposit(Integer id, Integer amount) throws AccountNotFoundException {
         log.debug("Attempt to deposit {} on account {}", amount, id);
         Account account = accountRepository
@@ -38,7 +38,7 @@ public class AccountService {
     }
 
     @Transactional
-    @Retryable(value = ObjectOptimisticLockingFailureException.class, maxAttempts = 5)
+    @Retryable(value = ObjectOptimisticLockingFailureException.class, maxAttempts = 10, backoff = @Backoff(delay = 200))
     public void withdraw(Integer id, Integer amount) throws AccountNotFoundException, NotEnoughMoneyException {
         log.debug("Attempt to withdraw {} from account {}", amount, id);
         Account account = accountRepository

@@ -8,8 +8,9 @@ import org.springframework.context.annotation.Import
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
+import pw.avvero.sb2memoryleak.account.DataSourceStub
 
-import static TestUtils.json
+import static pw.avvero.sb2memoryleak.account.TestUtils.json
 import static org.hamcrest.Matchers.*
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
